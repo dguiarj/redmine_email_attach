@@ -6,7 +6,8 @@ module EmailAttachMailHandlerPatch
     base.send(:include, InstanceMethods)
 
     base.class_eval do
-      alias_method_chain :add_attachments, :raw_attachment
+	alias_method :add_attachments_without_raw_attachment, :add_attachments
+	alias_method :add_attachments, :add_attachments_with_raw_attachment
     end
   end
 
